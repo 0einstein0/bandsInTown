@@ -12,7 +12,6 @@ class SearchBand extends Component {
 
     this.state = {
       band: "",
-
       bandObject: {},
       events: [],
     };
@@ -20,6 +19,7 @@ class SearchBand extends Component {
 
   componentDidMount() {
     this.handleChange();
+    window.addEventListener("keypress", this.handleKeyPress);
   }
 
   async getEventDetails(e) {
@@ -60,10 +60,16 @@ class SearchBand extends Component {
     });
   };
 
+  handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      this.getBandDetails(e);
+    }
+  };
+
   getBand() {
     if (Object.keys(this.state.bandObject).length !== 0) {
       return (
-        <div class="card card-side bg-zinc-900 bg-opacity-90 shadow-xl px-4  mx-auto justify-items-center  ">
+        <div class="card card-side bg-zinc-900 bg-opacity-90 shadow-xl grid grid-cols-2 lg:w-2/5 mx-auto justify-items-center  ">
           <figure>
             <img
               className="mask mask-circle w-32"
@@ -75,16 +81,16 @@ class SearchBand extends Component {
             <h2 class="text-secondary font-bold text-xl">
               {this.state.bandObject.name}
             </h2>
-            <h2>
+            <h2 className="break-all">
               <a href={this.state.bandObject.facebook_page_url}>
                 {this.state.bandObject.facebook_page_url}
               </a>
             </h2>
 
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-self-auto">
               <label
                 for="my-modal-4"
-                class="btn bg-primary text-white modal-button"
+                class="btn bg-primary w-24 sm:w-full  text-white modal-button"
               >
                 Go to Profile
               </label>
@@ -98,7 +104,7 @@ class SearchBand extends Component {
   getEvents() {
     if (this.state.bandObject.upcoming_event_count !== 0) {
       return (
-        <div className="gap-7  max-w-fit mx-auto items-stretch justify-items-center  grid lg:grid-cols-2">
+        <div className="gap-7 max-w-fit mx-auto items-stretch justify-items-center  grid lg:grid-cols-2">
           {this.state.events.map((event) => EventCard(event))}
         </div>
       );
@@ -120,6 +126,7 @@ class SearchBand extends Component {
             placeholder={`Search by Band Name`}
             ref={(input) => (this.result = input)}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeypress}
           />
           <button onClick={this.getBandDetails} className="btn btn-primary">
             <svg
@@ -144,10 +151,10 @@ class SearchBand extends Component {
           <input type="checkbox" id="my-modal-4" class="modal-toggle" />
           <label for="my-modal-4" class="modal cursor-pointer">
             <label class="modal-box bg-opacity-95 w-11/12 max-w-5xl">
-              <div className="grid grid-cols-2 place-items-center px-8 gap-y-5">
+              <div className="grid md:grid-cols-2 place-items-center px-8 gap-y-5">
                 {" "}
                 <img
-                  className="mask  mask-squircle  w-2/4"
+                  className="mask  mask-squircle  w-2/4 "
                   src={this.state.bandObject.thumb_url}
                   alt="Artist"
                 />
@@ -156,6 +163,12 @@ class SearchBand extends Component {
                     {this.state.bandObject.name}
                   </h1>
 
+                  <h2 class="font-medium text-2xl">
+                    Upcoming Events{" "}
+                    <span className="text-pink-700 text-center font-bold">
+                      {this.state.bandObject.upcoming_event_count}
+                    </span>
+                  </h2>
                   <button class="btn text-white bg-sky-700 ">
                     <a
                       className=""
@@ -164,13 +177,6 @@ class SearchBand extends Component {
                       Facebook Page
                     </a>
                   </button>
-
-                  <h2 class="font-medium ">
-                    Upcoming Events:{" "}
-                    <span className="text-pink-700">
-                      {this.state.bandObject.upcoming_event_count}
-                    </span>
-                  </h2>
                 </div>
                 <button
                   className="btn text-white w-2/3 mb-8 bg-primary"

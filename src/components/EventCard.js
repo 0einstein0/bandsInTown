@@ -15,13 +15,13 @@ const EventCard = (event) => {
   });
   return (
     <div
-      class="rounded-xl overflow-hidden  w-96 drop-shadow-2xl bg-opacity-75 bg-primary
+      class="rounded-xl overflow-hidden w-72 sm:w-96   items-stretch  drop-shadow-2xl bg-opacity-75 bg-primary
      text-primary-content grid md:grid-cols-2 md:divide-x-2 md:divide-stone-900/20  gap-2 p-6"
     >
       <div class="">
         <div class="stat-title">Venue</div>
         <div class="">
-          <h2 className="text-lg font-medium">{event.venue.name}</h2>
+          <h2 className="text-lg break-all font-medium">{event.venue.name}</h2>
         </div>
         <div class="pt-3">
           <div class="stat-title">Location</div>
@@ -31,7 +31,7 @@ const EventCard = (event) => {
         </div>
       </div>
 
-      <div class="md:px-8 sm:mt-3 ">
+      <div class="md:px-8  ">
         <div class="stat-title">Date</div>
         <div class="">
           <h3 className="text-lg font-medium">{date}</h3>
