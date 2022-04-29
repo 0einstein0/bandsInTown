@@ -13,6 +13,7 @@ class SearchBand extends Component {
     this.state = {
       band: "",
       bandObject: {},
+      search: true,
       events: [],
     };
   }
@@ -41,6 +42,7 @@ class SearchBand extends Component {
   async getBandDetails(e) {
     this.setState({
       events: [],
+      search: true,
     });
     e.preventDefault();
     try {
@@ -51,6 +53,7 @@ class SearchBand extends Component {
 
       this.setState({
         bandObject: bandObject,
+        search: false,
       });
     } catch (e) {
       console.log(e);
@@ -101,6 +104,8 @@ class SearchBand extends Component {
           </div>
         </div>
       );
+    } else if (!this.state.search) {
+      return <div>No Records Found</div>;
     }
   }
 
