@@ -22,6 +22,10 @@ https://app.swaggerhub.com/apis/Bandsintown/PublicAPI/3.0.0
 ![UI mob1](./screenshots/mob1.png)
 ![UI mob2](./screenshots/mob2.png)
 
+## Testing
+
+Did not add testing yet because haven't done it before.
+
 ## Available Scripts
 
 In the project directory, you can run:
