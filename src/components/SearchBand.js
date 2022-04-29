@@ -83,11 +83,11 @@ class SearchBand extends Component {
               alt="Artist"
             />
           </figure>
-          <div class="card-body">
+          <div class="card-body gap-y-4">
             <h2 class="text-secondary font-bold text-xl">
               {this.state.bandObject.name}
             </h2>
-            <h2 className="break-all">
+            <h2 className="break-all text-sm">
               <a href={this.state.bandObject.facebook_page_url}>
                 {this.state.bandObject.facebook_page_url}
               </a>
@@ -166,18 +166,18 @@ class SearchBand extends Component {
                   src={this.state.bandObject.thumb_url}
                   alt="Artist"
                 />
-                <div className="grid grid-rows-3 max-w-fit gap-y-6">
+                <div className="grid grid-rows-3 place-items-center sm:justify-items-stretch max-w-fit gap-y-6">
                   <h1 class="text-5xl font-bold ">
                     {this.state.bandObject.name}
                   </h1>
 
-                  <h2 class="font-medium text-2xl">
+                  <h2 class="font-medium text-xl md:text-2xl">
                     Upcoming Events{" "}
                     <span className="text-pink-700 text-center font-bold">
                       {this.state.bandObject.upcoming_event_count}
                     </span>
                   </h2>
-                  <button class="btn text-white bg-sky-700 ">
+                  <button class=" rounded-lg p-2 w-2/3 text-white bg-sky-700 ">
                     <a
                       className=""
                       href={this.state.bandObject.facebook_page_url}
