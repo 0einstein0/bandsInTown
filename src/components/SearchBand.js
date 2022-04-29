@@ -39,6 +39,9 @@ class SearchBand extends Component {
   }
 
   async getBandDetails(e) {
+    this.setState({
+      events: [],
+    });
     e.preventDefault();
     try {
       const resul = await fetch(
@@ -149,8 +152,8 @@ class SearchBand extends Component {
 
         <section>
           <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-          <label for="my-modal-4" class="modal cursor-pointer">
-            <label class="modal-box bg-opacity-95 w-11/12 max-w-5xl">
+          <label for="my-modal-4" class="modal  cursor-pointer">
+            <label class="modal-box bg-opacity-95 bg-zinc-900 w-11/12 max-w-5xl">
               <div className="grid md:grid-cols-2 place-items-center px-8 gap-y-5">
                 {" "}
                 <img
